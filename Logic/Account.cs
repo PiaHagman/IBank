@@ -34,7 +34,8 @@ namespace Logic
 
         public double WithdrawFunds(double withdrawal)
         {
-            throw new NotImplementedException();
+            Balance -= withdrawal;
+            return Balance;
         }
 
         public int GetBankAccountNumber()
