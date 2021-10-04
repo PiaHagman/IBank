@@ -14,6 +14,8 @@ namespace csharp_projektarbete
 
             Assert.Equal(firstDeposit, account.DepositToAccount(firstDeposit));
 
+            double secondDeposit = 500;
+            Assert.Equal((firstDeposit + secondDeposit), account.DepositToAccount(secondDeposit));
         }
     }
 }
