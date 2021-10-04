@@ -34,5 +34,16 @@ namespace csharp_projektarbete
 
             Assert.True(accountNumber > 1000000 && accountNumber < 9999999);
         }
+
+        [Fact]
+        public void WithdrawFunds_Test()
+        {
+            Account account = new Account();
+            double deposit = account.DepositToAccount(500);
+            double withdrawal = 400;
+
+            double balance = account.WithdrawFunds(withdrawal);
+            Assert.Equal(100, balance);
+        }
     }
 }

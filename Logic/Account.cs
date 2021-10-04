@@ -32,9 +32,16 @@ namespace Logic
             return Balance;
         }
 
+        public double WithdrawFunds(double withdrawal)
+        {
+            throw new NotImplementedException();
+        }
+
         public int GetBankAccountNumber()
         {
             return _accountnumber;
         }
+
+        
     }
 }
