@@ -6,9 +6,13 @@ namespace csharp_projektarbete
     public class UnitTest1
     {
         [Fact]
-        public void Test_AlwaysReturnTrue()
+        public void DepositToAccount_Test()
         {
-            Assert.True(true);
+
+            Account account = new Account();
+            double firstDeposit = 300;
+
+            Assert.Equal(firstDeposit, account.DepositToAccount(firstDeposit));
         }
     }
 }
