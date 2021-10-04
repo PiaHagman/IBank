@@ -8,6 +8,7 @@ namespace Logic
         private string _name;
         private int _age;
         private int _accountnumber;
+        private double _balance;
 
         public bool NewAccount(string name, int age)
         {
@@ -25,17 +26,17 @@ namespace Logic
             return true;
         }
 
-        private double Balance;
+        
         public double DepositToAccount(double deposit)
         {
-            Balance += deposit;
-            return Balance;
+            _balance += deposit;
+            return _balance;
         }
 
         public double WithdrawFunds(double withdrawal)
         {
-            Balance -= withdrawal;
-            return Balance;
+            _balance -= withdrawal;
+            return _balance;
         }
 
         public int GetBankAccountNumber()
