@@ -1,9 +1,4 @@
 # csharp-projektarbete
-
-Lägg in en issue för varje sak som behöver testas och kom med förslag på hur API:n (gränssnitt) borde se ut för varje test och vad som ska assertas. (Det räcker med enkel pseudo-kod.)
-Skapa en kanban och lägg in alla issues under Todo.
-Assigna en issue var och flytta dem till In Progress
-
 En nytt bankföretag, iBank, som bara finns online ska starta upp och de behöver utveckla en backend som sköter kontohanteringen på ett säkert sätt.
 Det finns olika sorts bankkonto
 
@@ -30,7 +25,5 @@ Tolka om kraven till en serie tester som ni sen börjar implementera enligt TDD.
 - testa att max-insättning är på 15000 /dag
 
 Fler tester knutna till punkterna i uppgiften. 
-Test 1. Skapa sparkonto och testa att det endast går att ta ut pengar 5 gånger per år. Testa att det dras 1 % i kostnad om 5 gånger överskrids. Testa att antal uttag startar om vid årsskiftet.  annars 1 % i kostnad.
-
 
 Övrigt. Enum, s 85 (ange om kontot är aktivt, fruset osv).
