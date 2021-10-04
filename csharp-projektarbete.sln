@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31613.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "csharp-projektarbete", "csharp-projektarbete\csharp-projektarbete.csproj", "{4994D019-4684-4FD1-9D9F-9E48F21745BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{35A37A0B-05FD-455B-93AF-BFD671EA368E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4994D019-4684-4FD1-9D9F-9E48F21745BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4994D019-4684-4FD1-9D9F-9E48F21745BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4994D019-4684-4FD1-9D9F-9E48F21745BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35A37A0B-05FD-455B-93AF-BFD671EA368E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35A37A0B-05FD-455B-93AF-BFD671EA368E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35A37A0B-05FD-455B-93AF-BFD671EA368E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35A37A0B-05FD-455B-93AF-BFD671EA368E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
