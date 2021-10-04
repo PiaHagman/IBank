@@ -25,6 +25,13 @@ namespace Logic
             return true;
         }
 
+        private double Balance;
+        public double DepositToAccount(double deposit)
+        {
+            Balance += deposit;
+            return Balance;
+        }
+
         public int GetBankAccountNumber()
         {
             return _accountnumber;
