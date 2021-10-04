@@ -13,6 +13,7 @@ namespace csharp_projektarbete
             double firstDeposit = 300;
 
             Assert.Equal(firstDeposit, account.DepositToAccount(firstDeposit));
+
         }
     }
 }

@@ -8,9 +8,11 @@ namespace csharp_projektarbete
 {
     class Account
     {
+        private double Balance;
         public double DepositToAccount(double deposit)
         {
-            throw new NotImplementedException();
+            Balance += deposit;
+            return Balance;
         }
     }
 }
