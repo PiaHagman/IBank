@@ -7,7 +7,7 @@ namespace Logic
 
         public bool NewAccount(string name, int age)
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }
