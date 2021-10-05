@@ -33,6 +33,7 @@ namespace Logic
             {
                 return false;
             }
+
             _balance += deposit;
             return true;
         }

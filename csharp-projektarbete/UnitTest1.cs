@@ -31,22 +31,24 @@ namespace csharp_projektarbete
         {
             double firstDeposit = 300;
             account.DepositToAccount(firstDeposit);
+
             Assert.Equal(firstDeposit, account.GetBalance());
 
             double secondDeposit = 500;
             account.DepositToAccount(secondDeposit);
+
             Assert.Equal((firstDeposit + secondDeposit), account.GetBalance());
 
-            double negativDeposit = -300;
-            bool canInsertNegativDeposit = account.DepositToAccount(negativDeposit);
+            double negativeDeposit = -300;
+            bool canInsertNegativeDeposit = account.DepositToAccount(negativeDeposit);
 
-            Assert.False(canInsertNegativDeposit);
+            Assert.False(canInsertNegativeDeposit);
         }
 
         [Fact]
         public void WithdrawFunds_Test()
         {
-            bool deposit = account.DepositToAccount(500);
+            account.DepositToAccount(500);
             double withdrawal = 400;
 
             double balance = account.WithdrawFunds(withdrawal);
