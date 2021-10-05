@@ -40,6 +40,11 @@ namespace Logic
 
         public bool WithdrawFunds(double withdrawal)
         {
+            if ((_balance - withdrawal) < 0)
+            {
+                return false;
+            }
+            
             _balance -= withdrawal;
             return true;
         }
