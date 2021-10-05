@@ -6,7 +6,6 @@ namespace Logic
     public class Account
     {
         private string _name;
-        private int _age;
         private int _accountnumber;
         private double _balance;
 
