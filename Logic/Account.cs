@@ -29,7 +29,7 @@ namespace Logic
         
         public bool DepositToAccount(double deposit)
         {
-            if (deposit <= 0)
+            if (deposit <= 0 || deposit > 15000)
             {
                 return false;
             }
