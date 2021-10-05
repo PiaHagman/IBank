@@ -29,6 +29,10 @@ namespace Logic
         
         public bool DepositToAccount(double deposit)
         {
+            if (deposit <= 0)
+            {
+                return false;
+            }
             _balance += deposit;
             return true;
         }
@@ -47,7 +51,7 @@ namespace Logic
 
         public double GetBalance()
         {
-            throw new NotImplementedException();
+            return _balance;
         }
     }
 }
