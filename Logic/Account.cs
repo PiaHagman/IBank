@@ -38,10 +38,15 @@ namespace Logic
             return true;
         }
 
-        public double WithdrawFunds(double withdrawal)
+        public bool WithdrawFunds(double withdrawal)
         {
+            if ((_balance - withdrawal) < 0)
+            {
+                return false;
+            }
+            
             _balance -= withdrawal;
-            return _balance;
+            return true;
         }
 
         public int GetBankAccountNumber()

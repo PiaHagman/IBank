@@ -49,10 +49,16 @@ namespace csharp_projektarbete
         public void WithdrawFunds_Test()
         {
             account.DepositToAccount(500);
-            double withdrawal = 400;
+            account.WithdrawFunds(400);
 
-            double balance = account.WithdrawFunds(withdrawal);
+            double balance = account.GetBalance();
             Assert.Equal(100, balance);
+
+            bool canExceedBalance = account.WithdrawFunds(1000);
+            Assert.False(canExceedBalance);
+
+            bool balanceCanBeZero = account.WithdrawFunds(withdrawal: 100);
+            Assert.True(balanceCanBeZero);
         }
     }
 }
