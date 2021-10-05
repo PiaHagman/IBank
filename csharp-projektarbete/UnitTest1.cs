@@ -60,5 +60,17 @@ namespace csharp_projektarbete
             bool balanceCanBeZero = account.WithdrawFunds(withdrawal: 100);
             Assert.True(balanceCanBeZero);
         }
+
+
+        [Fact]
+
+        public void MaxDepositPerDayAndTime_Test()
+        {
+            bool AcceptedDepositUpTo15000 = account.DepositToAccount(15000);
+            Assert.True(AcceptedDepositUpTo15000);
+
+            bool deniedDepositOver15000 = account.DepositToAccount(15001);
+            Assert.False(deniedDepositOver15000);
+        }
     }
 }
