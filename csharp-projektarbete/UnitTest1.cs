@@ -66,11 +66,18 @@ namespace csharp_projektarbete
 
         public void MaxDepositPerDayAndTime_Test()
         {
-            bool AcceptedDepositUpTo15000 = account.DepositToAccount(15000);
-            Assert.True(AcceptedDepositUpTo15000);
+            bool acceptedDepositUpTo15000 = account.DepositToAccount(15000);
+            Assert.True(acceptedDepositUpTo15000);
 
             bool deniedDepositOver15000 = account.DepositToAccount(15001);
             Assert.False(deniedDepositOver15000);
+
+            Account account1 = new Account();
+            account1.DepositToAccount(8000);
+
+            bool exceededMaxDepositForADay = account1.DepositToAccount(8000);
+            Assert.False(exceededMaxDepositForADay);
+
         }
     }
 }
