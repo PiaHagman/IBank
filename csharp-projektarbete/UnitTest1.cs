@@ -57,6 +57,8 @@ namespace csharp_projektarbete
             bool canExceedBalance = account.WithdrawFunds(1000);
             Assert.False(canExceedBalance);
 
+            bool balanceCanBeZero = account.WithdrawFunds(withdrawal: 100);
+            Assert.True(balanceCanBeZero);
         }
     }
 }
