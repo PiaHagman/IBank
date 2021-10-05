@@ -27,10 +27,15 @@ namespace Logic
         }
 
         
-        public double DepositToAccount(double deposit)
+        public bool DepositToAccount(double deposit)
         {
+            if (deposit <= 0)
+            {
+                return false;
+            }
+
             _balance += deposit;
-            return _balance;
+            return true;
         }
 
         public double WithdrawFunds(double withdrawal)
@@ -44,6 +49,10 @@ namespace Logic
             return _accountnumber;
         }
 
-        
+
+        public double GetBalance()
+        {
+            return _balance;
+        }
     }
 }
