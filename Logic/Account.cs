@@ -19,6 +19,7 @@ namespace Logic
         {
             int MinNumber = 1000000; //TODO borde vi ge MinNumber och MaxNumber någon access modifier?
             int MaxNumber = 9999999;
+
             var rand = new Random();
 
             if (age < 18)
@@ -34,7 +35,7 @@ namespace Logic
         
         public bool DepositToAccount(double deposit, IDate date)
         {
-            if (deposit <= 0 || MaxDepositsPerDayAreExceeded (deposit, date))
+            if (deposit <= 0 || deposit > 15000 || MaxDepositsPerDayAreExceeded (deposit, date))
             {
                 return false;
             }
@@ -52,7 +53,7 @@ namespace Logic
                 return false;
             }
 
-            var newWithdrawel = new Transaction( -withdrawal, date);  //Vad ska jag göra för att detta ska funka?
+            var newWithdrawel = new Transaction( -withdrawal, date);  //Todo - testa att det blir ett minussaldo som dras från balance
             allTransactions.Add(newWithdrawel);
             
             return true;
@@ -61,7 +62,7 @@ namespace Logic
         public bool MaxDepositsPerDayAreExceeded(double deposit, IDate date)
         {
             double maxDepositsPerDay = 15000;
-            double totalDepositsToday= 0;
+            double totalDepositsToday= 0; 
 
             foreach (var transaction in allTransactions)
             {
@@ -70,7 +71,8 @@ namespace Logic
                     totalDepositsToday += transaction.Amount;
                 }
 
-                if (totalDepositsToday + deposit > maxDepositsPerDay)
+
+                if ((totalDepositsToday + deposit) > maxDepositsPerDay)
                 {
                     return true;
                 }
