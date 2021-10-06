@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    public class RealTime : ITime
+    public interface IDate
     {
-        public DateTime Now()
-        {
-            return DateTime.Now;
-        }
+        public DateTime Today();
     }
 }
