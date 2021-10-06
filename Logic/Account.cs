@@ -59,5 +59,12 @@ namespace Logic
         {
             return _balance;
         }
+
+        public bool WithdrawBankCharges(double bankCharges)
+        {
+            _balance -= bankCharges;
+
+            return true;
+        }
     }
 }

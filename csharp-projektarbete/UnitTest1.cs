@@ -60,5 +60,21 @@ namespace csharp_projektarbete
             bool balanceCanBeZero = account.WithdrawFunds(withdrawal: 100);
             Assert.True(balanceCanBeZero);
         }
+
+        [Fact]
+
+        public void WithdrawBankChanges_Test()
+        {
+            account.DepositToAccount(300);
+            var bankCharges = 300;
+            bool canWithdrawBankCharges = account.WithdrawBankCharges(bankCharges);
+
+            Assert.True(canWithdrawBankCharges);
+
+            account.WithdrawBankCharges(bankCharges);
+            Assert.True(canWithdrawBankCharges);
+
+            Assert.Equal(-300, account.GetBalance());
+        }
     }
 }
