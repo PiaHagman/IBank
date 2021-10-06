@@ -16,7 +16,7 @@ namespace csharp_projektarbete
             return _dateUsedForTests;
         }
 
-        public void SetTimeTo (DateTime givenDate)
+        public void SetDateTo (DateTime givenDate)
         {
             _dateUsedForTests = givenDate;
         }
