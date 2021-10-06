@@ -63,7 +63,7 @@ namespace csharp_projektarbete
 
         [Fact]
 
-        public void WithdrawBankChanges()
+        public void WithdrawBankChanges_Test()
         {
             account.DepositToAccount(300);
             var bankCharges = 300;
@@ -73,6 +73,8 @@ namespace csharp_projektarbete
 
             account.WithdrawBankCharges(bankCharges);
             Assert.True(canWithdrawBankCharges);
+
+            Assert.Equal(-300, account.GetBalance());
         }
     }
 }
