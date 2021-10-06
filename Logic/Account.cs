@@ -8,10 +8,11 @@ namespace Logic
         private string _name;
         private int _accountnumber;
         private double _balance;
+        private double _totalDepositsSumToday = 0;
 
         public bool NewAccount(string name, int age)
         {
-            int MinNumber = 1000000;
+            int MinNumber = 1000000; //TODO borde vi ge MinNumber och MaxNumber någon access modifier?
             int MaxNumber = 9999999;
             var rand = new Random();
 
@@ -26,7 +27,7 @@ namespace Logic
         }
 
         
-        public bool DepositToAccount(double deposit)
+        public bool DepositToAccount(double deposit, ITime time)
         {
             if (deposit <= 0 || deposit > 15000)
             {
@@ -34,6 +35,14 @@ namespace Logic
             }
 
             _balance += deposit;
+            _totalDepositsSumToday += deposit;
+
+            if (_totalDepositsSumToday > 15000)
+            {
+                _totalDepositsSumToday = 0;
+                return false;
+            }
+
             return true;
         }
 

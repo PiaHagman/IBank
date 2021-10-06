@@ -7,9 +7,11 @@ namespace csharp_projektarbete
     public class UnitTest1
     {
         private Account account;
+        private MockTime mockTime;
         public UnitTest1()
         {
             account = new Account();
+            mockTime = new MockTime();
         }
 
         [Fact]
@@ -30,17 +32,17 @@ namespace csharp_projektarbete
         public void DepositToAccount_Test()
         {
             double firstDeposit = 300;
-            account.DepositToAccount(firstDeposit);
+            account.DepositToAccount(firstDeposit, mockTime);
 
             Assert.Equal(firstDeposit, account.GetBalance());
 
             double secondDeposit = 500;
-            account.DepositToAccount(secondDeposit);
+            account.DepositToAccount(secondDeposit, mockTime);
 
             Assert.Equal((firstDeposit + secondDeposit), account.GetBalance());
 
             double negativeDeposit = -300;
-            bool canInsertNegativeDeposit = account.DepositToAccount(negativeDeposit);
+            bool canInsertNegativeDeposit = account.DepositToAccount(negativeDeposit, mockTime);
 
             Assert.False(canInsertNegativeDeposit);
         }
@@ -48,7 +50,7 @@ namespace csharp_projektarbete
         [Fact]
         public void WithdrawFunds_Test()
         {
-            account.DepositToAccount(500);
+            account.DepositToAccount(500, mockTime);
             account.WithdrawFunds(400);
 
             double balance = account.GetBalance();
@@ -66,16 +68,16 @@ namespace csharp_projektarbete
 
         public void MaxDepositPerDayAndTime_Test()
         {
-            bool acceptedDepositUpTo15000 = account.DepositToAccount(15000);
+            bool acceptedDepositUpTo15000 = account.DepositToAccount(15000, mockTime);
             Assert.True(acceptedDepositUpTo15000);
 
-            bool deniedDepositOver15000 = account.DepositToAccount(15001);
+            bool deniedDepositOver15000 = account.DepositToAccount(15001, mockTime);
             Assert.False(deniedDepositOver15000);
 
             Account account1 = new Account();
-            account1.DepositToAccount(8000);
+            account1.DepositToAccount(8000, mockTime);
 
-            bool exceededMaxDepositForADay = account1.DepositToAccount(8000);
+            bool exceededMaxDepositForADay = account1.DepositToAccount(8000, mockTime);
             Assert.False(exceededMaxDepositForADay);
 
         }
