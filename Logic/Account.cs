@@ -62,7 +62,9 @@ namespace Logic
 
         public bool WithdrawBankCharges(double bankCharges)
         {
-            throw new NotImplementedException();
+            _balance -= bankCharges;
+
+            return true;
         }
     }
 }
