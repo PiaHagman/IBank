@@ -33,14 +33,14 @@ namespace Logic
         }
 
         
-        public bool DepositToAccount(double deposit, IDate date)
+        public bool DepositToAccount(double deposit, IDate date) //TODO Döp om till DepositCashToAccount samt skapa ny metod TransferFromAccount()
         {
             if (deposit <= 0 || deposit > 15000 || MaxDepositsPerDayAreExceeded (deposit, date))
             {
                 return false;
             }
 
-            var newDeposit = new Transaction(deposit, date);  
+            var newDeposit = new Transaction(deposit, date.Today());  
             allTransactions.Add(newDeposit);
             
             return true;
@@ -53,7 +53,7 @@ namespace Logic
                 return false;
             }
 
-            var newWithdrawel = new Transaction( -withdrawal, date);  //Todo - testa att det blir ett minussaldo som dras från balance
+            var newWithdrawel = new Transaction( -withdrawal, date.Today());  //Todo - testa att det blir ett minussaldo som dras från balance
             allTransactions.Add(newWithdrawel);
             
             return true;
@@ -66,7 +66,7 @@ namespace Logic
 
             foreach (var transaction in allTransactions)
             {
-                if (transaction.Date == date && transaction.Amount > 0)
+                if (transaction.Date == date.Today() && transaction.Amount > 0)
                 {
                     totalDepositsToday += transaction.Amount;
                 }

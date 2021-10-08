@@ -9,9 +9,9 @@ namespace Logic
     public class Transaction
     {
         public double Amount { get; }
-        public IDate Date { get; }
+        public DateTime Date { get; }
 
-        public Transaction(double amount, IDate date)
+        public Transaction(double amount, DateTime date)
         {
             Amount = amount;
             Date = date;

@@ -81,10 +81,10 @@ namespace csharp_projektarbete
             Assert.False(exceededMaxDepositForADay);
 
             //fejka att det går en dag och att det då går att sätta in 8000 nya.
-            MockDate newMockDate = new MockDate();
-            newMockDate.SetDateTo(DateTime.Today + TimeSpan.FromDays(1));
+          
+           _mockDate.SetDateTo(DateTime.Today + TimeSpan.FromDays(1));
 
-            bool maxDepositNowSetToZero = account1.DepositToAccount(8000, newMockDate);
+            bool maxDepositNowSetToZero = account1.DepositToAccount(8000, _mockDate);
             Assert.True(maxDepositNowSetToZero);
 
         }
