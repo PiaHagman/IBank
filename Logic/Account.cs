@@ -59,6 +59,14 @@ namespace Logic
             return true;
         }
 
+        public bool WithdrawBankCharges(double bankCharges, IDate date)
+        {
+            var newBankCharge = new Transaction(-bankCharges, date.Today());
+            allTransactions.Add(newBankCharge);
+
+            return true;
+        }
+
         public bool MaxDepositsPerDayAreExceeded(double deposit, IDate date)
         {
             double maxDepositsPerDay = 15000;
@@ -100,11 +108,6 @@ namespace Logic
 
         }
 
-        public bool WithdrawBankCharges(double bankCharges)
-        {
-            _balance -= bankCharges;
-
-            return true;
-        }
+        
     }
 }
