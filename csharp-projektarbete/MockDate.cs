@@ -10,12 +10,12 @@ namespace csharp_projektarbete
     class MockDate : IDate
     {
         DateTime _dateUsedForTests = DateTime.Today;
-
+       
         public DateTime Today()
         {
             return _dateUsedForTests;
         }
-
+        
         public void SetDateTo (DateTime givenDate)
         {
             _dateUsedForTests = givenDate;
