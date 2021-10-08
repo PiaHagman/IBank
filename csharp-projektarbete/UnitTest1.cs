@@ -69,12 +69,16 @@ namespace csharp_projektarbete
             var bankCharges = 300;
             bool canWithdrawBankCharges = account.WithdrawBankCharges(bankCharges);
 
-            Assert.True(canWithdrawBankCharges);
+            _mockDate.SetTimeTo(DateTime.Today+TimeSpan.FromDays(1));
 
-            account.WithdrawBankCharges(bankCharges);
-            Assert.True(canWithdrawBankCharges);
+            bool NotexceededMaxDepositForADay2 = account1.DepositToAccount(7500, _mockDate);
+            Assert.True(NotexceededMaxDepositForADay2);
+            /*var mockTime = new MockDate();
 
-            Assert.Equal(-300, account.GetBalance());
+            mockTime.SetTimeTo(DateTime.Today + TimeSpan.FromDays(1));
+
+            bool notExceededMaxDepositForADay2 = account1.DepositToAccount(7500, mockTime);
+            Assert.True(notExceededMaxDepositForADay2);*/
         }
     }
 }
