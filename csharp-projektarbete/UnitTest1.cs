@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Logic;
 using Xunit;
 
@@ -8,10 +9,12 @@ namespace csharp_projektarbete
     {
         private Account account;
         private MockDate _mockDate;
+       
         public UnitTest1()
         {
-            account = new Account();
+            account = new Account(new List<Transaction>());
             _mockDate = new MockDate();
+            
         }
 
         [Fact]
@@ -90,7 +93,7 @@ namespace csharp_projektarbete
             bool deniedDepositOver15000 = account.DepositToAccount(15001, _mockDate);
             Assert.False(deniedDepositOver15000);
 
-            Account account1 = new Account();
+            Account account1 = new Account(new List<Transaction>());
             account1.DepositToAccount(8000, _mockDate);
 
             bool exceededMaxDepositForADay = account1.DepositToAccount(8000, _mockDate);
@@ -108,7 +111,7 @@ namespace csharp_projektarbete
         [Fact]
         public void SavingsAccount_Test()
         {
-            SavingsAccount savingsAccount = new SavingsAccount();
+            SavingsAccount savingsAccount = new SavingsAccount(new List<Transaction>());
 
              bool depositTest = savingsAccount.DepositToAccount(3000, _mockDate);
 

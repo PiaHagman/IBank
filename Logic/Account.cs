@@ -9,9 +9,12 @@ namespace Logic
     {
         private string _name;
         private int _accountnumber;
-        private List<Transaction> allTransactions = new List<Transaction>();
+        private List<Transaction> _allTransactions;
 
-
+        public Account(List<Transaction> allTransactions)
+        {
+            _allTransactions = allTransactions;
+        }
         public bool NewAccount(string name, int age) //TODO Lägg till dounle initialBalance,
                                                      //så behöver vi inte sätta in pengar först varje gång.
                                                      //Vi behöver då kalla på metoden DepositToAccount() så att insättningen verkligen görs.
@@ -41,12 +44,12 @@ namespace Logic
             }
 
             var newDeposit = new Transaction(deposit, date.Today());  
-            allTransactions.Add(newDeposit);
+            _allTransactions.Add(newDeposit);
             
             return true;
         }
 
-        public bool WithdrawFunds(double withdrawal, IDate date)
+        public virtual bool WithdrawFunds(double withdrawal, IDate date)
         {
             if ((GetBalance() - withdrawal) < 0)
             {
@@ -54,7 +57,7 @@ namespace Logic
             }
 
             var newWithdrawel = new Transaction( -withdrawal, date.Today());  //Todo - testa att det blir ett minussaldo som dras från balance
-            allTransactions.Add(newWithdrawel);
+            _allTransactions.Add(newWithdrawel);
             
             return true;
         }
@@ -62,7 +65,7 @@ namespace Logic
         public bool WithdrawBankCharges(double bankCharges, IDate date)
         {
             var newBankCharge = new Transaction(-bankCharges, date.Today());
-            allTransactions.Add(newBankCharge);
+            _allTransactions.Add(newBankCharge);
 
             return true;
         }
@@ -72,7 +75,7 @@ namespace Logic
             double maxDepositsPerDay = 15000;
             double totalDepositsToday= 0; 
 
-            foreach (var transaction in allTransactions)
+            foreach (var transaction in _allTransactions)
             {
                 if (transaction.Date == date.Today() && transaction.Amount > 0)
                 {
@@ -100,7 +103,7 @@ namespace Logic
         {
             double balance = 0;
 
-            foreach (var transaction in allTransactions)
+            foreach (var transaction in _allTransactions)
             {
                 balance += transaction.Amount;
             }
