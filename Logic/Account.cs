@@ -5,7 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace Logic
 {
-    public class Account
+    public class Account :IBank
     {
         private string _name;
         private int _accountnumber;

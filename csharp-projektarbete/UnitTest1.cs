@@ -104,5 +104,27 @@ namespace csharp_projektarbete
             Assert.True(maxDepositNowSetToZero);
 
         }
+
+        [Fact]
+        public void SavingsAccount_Test()
+        {
+            SavingsAccount savingsAccount = new SavingsAccount();
+
+             bool depositTest = savingsAccount.DepositToAccount(3000, _mockDate);
+
+             Assert.True(depositTest);
+             Assert.Equal(3000, savingsAccount.GetBalance());
+
+
+             savingsAccount.WithdrawFunds(500, _mockDate);
+             savingsAccount.WithdrawFunds(300, _mockDate);
+             savingsAccount.WithdrawFunds(200, _mockDate);
+             savingsAccount.WithdrawFunds(300, _mockDate);
+             savingsAccount.WithdrawFunds(500, _mockDate);
+             savingsAccount.WithdrawFunds(200, _mockDate);
+             //Testar att 6:e uttag debiterasmed 1% charges
+
+             Assert.Equal(998, savingsAccount.GetBalance());
+        }
     }
 }
