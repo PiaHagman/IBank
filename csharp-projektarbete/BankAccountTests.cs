@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Logic;
 using Xunit;
 
@@ -190,6 +191,11 @@ namespace csharp_projektarbete
                 debitAccount.WithdrawFunds(100, _mockDate);
             }
             Assert.Equal(0, debitAccount.GetBalance());
+
+            //fejkar att det är ny månad
+            _mockDate.SetDateTo(DateTime.Today.AddMonths(1));
+            Assert.True(debitAccount.WithdrawFunds(500, _mockDate));
+
         }
     }
 }
