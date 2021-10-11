@@ -173,6 +173,9 @@ namespace csharp_projektarbete
 
             bool canWithdrawFunds = creditAccount.WithdrawFunds(2000, _mockDate);
             Assert.True(canWithdrawFunds);
+
+            bool canWithdrawCreditFunds = creditAccount.WithdrawFunds(19001, _mockDate);
+            Assert.False(canWithdrawCreditFunds);
         }
     }
 }
