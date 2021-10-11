@@ -125,13 +125,13 @@ namespace csharp_projektarbete
              savingsAccount.WithdrawFunds(300, _mockDate);
              savingsAccount.WithdrawFunds(500, _mockDate);
              savingsAccount.WithdrawFunds(200, _mockDate);
-             //Testar att 6:e uttag debiterasmed 1% charges
+             //Testar att 6:e uttag debiteras med 1% charges
 
              Assert.Equal(998, savingsAccount.GetBalance());
 
             //Testar att vi får 5 nya uttag vid årsskiftet
+            _mockDate.SetYearTo(DateTime.Today.AddYears(1));
             savingsAccount.WithdrawFunds(500, _mockDate);
-            _mockDate.SetDateTo(DateTime.Today.AddYears(1));
             Assert.Equal(498, savingsAccount.GetBalance());
         }
     }

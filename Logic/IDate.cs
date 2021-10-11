@@ -9,5 +9,7 @@ namespace Logic
     public interface IDate
     {
         public DateTime Today();
+        public int Year();
+
     }
 }

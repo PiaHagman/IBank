@@ -17,26 +17,37 @@ namespace Logic
         public override bool WithdrawFunds(double withdrawal, IDate date)
         {
             var bankCharges = 0.01 * withdrawal;
+            double totalWithdrawalsPerYear = 0;
+            int dateYear = date.Year();
 
             if ((GetBalance() - withdrawal) < 0)
             {
                 return false;
             }
 
-            if (_savingsAccountTransactions.Count > 5)
+            foreach (var transaction in _savingsAccountTransactions)
             {
-                WithdrawBankCharges(bankCharges, date);
+                if (totalWithdrawalsPerYear >=5 && transaction.Date.Year == date.Year())
+                {
+                    WithdrawBankCharges(bankCharges, date);
 
-                var newWithDrawlWithBankCharges = new Transaction(-withdrawal, date.Today());
-                _savingsAccountTransactions.Add(newWithDrawlWithBankCharges);
+                    var newWithDrawlWithBankCharges = new Transaction(-withdrawal, date.Today());
+                    _savingsAccountTransactions.Add(newWithDrawlWithBankCharges);
 
-                return true;
+                    return true;
+                }
+
+                if (transaction.Date.Year != date.Year())
+                {
+                    totalWithdrawalsPerYear=0;
+                }
+
+                totalWithdrawalsPerYear++;
             }
-
+           
             var newWithdrawel = new Transaction(-withdrawal, date.Today());  
             _savingsAccountTransactions.Add(newWithdrawel);
-
-
+            
             return true;
         }
 
