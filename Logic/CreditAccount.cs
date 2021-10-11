@@ -35,5 +35,21 @@ namespace Logic
 
             return true;
         }
+
+        public override double GetBalance()
+        {
+            double balance = 0;
+
+            foreach (var transaction in _creditAccountTransactions)
+            {
+                balance += transaction.Amount;
+            }
+
+            if (balance < 0)
+            {
+                balance = 0;
+            }
+            return balance;
+        }
     }
 }
