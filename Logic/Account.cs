@@ -8,8 +8,8 @@ namespace Logic
     public class Account :IBank
     {
         private string _name;
-        private int _accountnumber;
-        private List<Transaction> _allTransactions;
+        private int _accountNumber;
+        private readonly List<Transaction> _allTransactions;
 
         public Account(List<Transaction> allTransactions)
         {
@@ -20,7 +20,7 @@ namespace Logic
                                                      //Vi behöver då kalla på metoden DepositToAccount() så att insättningen verkligen görs.
                                                         
         {
-            int MinNumber = 1000000; //TODO borde vi ge MinNumber och MaxNumber någon access modifier?
+            int MinNumber = 1000000; 
             int MaxNumber = 9999999;
 
             var rand = new Random();
@@ -31,7 +31,7 @@ namespace Logic
             }
 
             _name = name;
-            _accountnumber = rand.Next(MinNumber, MaxNumber);
+            _accountNumber = rand.Next(MinNumber, MaxNumber);
             return true;
         }
 
@@ -95,7 +95,7 @@ namespace Logic
 
         public int GetBankAccountNumber()
         {
-            return _accountnumber;
+            return _accountNumber;
         }
 
 

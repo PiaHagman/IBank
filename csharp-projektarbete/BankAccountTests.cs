@@ -5,12 +5,12 @@ using Xunit;
 
 namespace csharp_projektarbete
 {
-    public class UnitTest1
+    public class BankAccountTests
     {
         private Account account;
         private MockDate _mockDate;
        
-        public UnitTest1()
+        public BankAccountTests()
         {
             account = new Account(new List<Transaction>());
             _mockDate = new MockDate();
@@ -80,7 +80,6 @@ namespace csharp_projektarbete
             Assert.True(canWithdrawBankCharges);
 
             Assert.Equal(-300, account.GetBalance());
-
         }
 
         [Fact]
@@ -100,12 +99,10 @@ namespace csharp_projektarbete
             Assert.False(exceededMaxDepositForADay);
 
             //fejka att det går en dag och att det då går att sätta in 8000 nya.
-          
-           _mockDate.SetDateTo(DateTime.Today + TimeSpan.FromDays(1));
+            _mockDate.SetDateTo(DateTime.Today + TimeSpan.FromDays(1));
 
             bool maxDepositNowSetToZero = account1.DepositToAccount(8000, _mockDate);
             Assert.True(maxDepositNowSetToZero);
-
         }
 
         [Fact]
@@ -118,15 +115,14 @@ namespace csharp_projektarbete
              Assert.True(depositTest);
              Assert.Equal(3000, savingsAccount.GetBalance());
 
-
              savingsAccount.WithdrawFunds(500, _mockDate);
              savingsAccount.WithdrawFunds(300, _mockDate);
              savingsAccount.WithdrawFunds(200, _mockDate);
              savingsAccount.WithdrawFunds(300, _mockDate);
              savingsAccount.WithdrawFunds(500, _mockDate);
              savingsAccount.WithdrawFunds(200, _mockDate);
+            
              //Testar att 6:e uttag debiteras med 1% charges
-
              Assert.Equal(998, savingsAccount.GetBalance());
 
             //Testar att vi får 5 nya uttag vid årsskiftet
