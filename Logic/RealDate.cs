@@ -12,11 +12,5 @@ namespace Logic
         {
             return DateTime.Today;
         }
-
-        public int Year()
-        {
-            int year = Convert.ToInt32(DateTime.Today.Year);
-            return year;
-        }
     }
 }

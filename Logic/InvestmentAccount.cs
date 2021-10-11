@@ -25,12 +25,12 @@ namespace Logic
 
             foreach (var transaction in _investmentAccountTransactions)
             {
-                if (totalWithdrawalsPerYear>=1 && transaction.Date.Year == date.Year() && transaction.Amount < 0)
+                if (totalWithdrawalsPerYear>=1 && transaction.Date.Year == date.Today().Year && transaction.Amount < 0)
                 {
                     return false;
                 }
 
-                if (transaction.Date.Year != date.Year())
+                if (transaction.Date.Year != date.Today().Year)
                 {
                     totalWithdrawalsPerYear = 0;
                 }

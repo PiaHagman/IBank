@@ -25,7 +25,7 @@ namespace Logic
 
             foreach (var transaction in _savingsAccountTransactions)
             {
-                if (totalWithdrawalsPerYear >=5 && transaction.Date.Year == date.Year() && transaction.Amount<0)
+                if (totalWithdrawalsPerYear >=5 && transaction.Date.Year == date.Today().Year && transaction.Amount<0)
                 {
                     WithdrawBankCharges(bankCharges, date);
 
@@ -35,7 +35,7 @@ namespace Logic
                     return true;
                 }
 
-                if (transaction.Date.Year != date.Year())
+                if (transaction.Date.Year != date.Today().Year)
                 {
                     totalWithdrawalsPerYear=0;
                 }
