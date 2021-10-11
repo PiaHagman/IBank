@@ -177,5 +177,19 @@ namespace csharp_projektarbete
             bool canWithdrawCreditFunds = creditAccount.WithdrawFunds(19001, _mockDate);
             Assert.False(canWithdrawCreditFunds);
         }
+
+        [Fact]
+        public void DebitAccount_Tests()
+        {
+            DebitAccount debitAccount = new DebitAccount(new List<Transaction>());
+
+            debitAccount.DepositToAccount(5000, _mockDate);
+
+            while (debitAccount.GetBalance()>0)
+            {
+                debitAccount.WithdrawFunds(100, _mockDate);
+            }
+            Assert.Equal(0, debitAccount.GetBalance());
+        }
     }
 }
