@@ -99,7 +99,7 @@ namespace Logic
         }
 
 
-        public double GetBalance()
+        public virtual double GetBalance()
         {
             double balance = 0;
 
