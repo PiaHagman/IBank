@@ -14,7 +14,7 @@ namespace csharp_projektarbete
         {
             account = new Account(new List<Transaction>());
             _mockDate = new MockDate();
-            
+            //TODO Sätt datum till ett startdatum, årsskifte
         }
 
         [Fact]
@@ -126,9 +126,34 @@ namespace csharp_projektarbete
              Assert.Equal(998, savingsAccount.GetBalance());
 
             //Testar att vi får 5 nya uttag vid årsskiftet
-            _mockDate.SetYearTo(DateTime.Today.AddYears(1));
+            _mockDate.SetDateTo(DateTime.Today.AddYears(1));
             savingsAccount.WithdrawFunds(500, _mockDate);
             Assert.Equal(498, savingsAccount.GetBalance());
         }
+
+        [Fact]
+        public void InvestmentAccount_Tests()
+        {
+            InvestmentAccount investmentAccount = new InvestmentAccount(new List<Transaction>());
+
+            bool depositTest = investmentAccount.DepositToAccount(3000, _mockDate);
+            Assert.True(depositTest);
+            Assert.Equal(3000, investmentAccount.GetBalance());
+
+            bool canWithdrawFunds = investmentAccount.WithdrawFunds(1000, _mockDate);
+            Assert.True(canWithdrawFunds);
+
+            bool cantWithdrawFunds = investmentAccount.WithdrawFunds(1000, _mockDate);
+            Assert.False(cantWithdrawFunds);
+
+            _mockDate.SetDateTo(DateTime.Today.AddYears(1));
+            investmentAccount.WithdrawFunds(500, _mockDate);
+            Assert.Equal(1500, investmentAccount.GetBalance());
+
+            bool cantWithdrawFundsAnotherYear = investmentAccount.WithdrawFunds(100, _mockDate);
+            Assert.False(cantWithdrawFundsAnotherYear);
+        }
+
+      
     }
 }
