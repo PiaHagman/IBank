@@ -154,6 +154,12 @@ namespace csharp_projektarbete
             Assert.False(cantWithdrawFundsAnotherYear);
         }
 
-      
+        [Fact]
+        public void RealDate_Test()
+        {
+            var realDate = new RealDate();
+
+            Assert.Equal(DateTime.Today, realDate.Today());
+        }
     }
 }
