@@ -161,5 +161,18 @@ namespace csharp_projektarbete
 
             Assert.Equal(DateTime.Today, realDate.Today());
         }
+
+        [Fact]
+        public void CreditAccount_Tests()
+        {
+            CreditAccount creditAccount = new CreditAccount(new List<Transaction>());
+
+            bool depositTest = creditAccount.DepositToAccount(1000, _mockDate);
+            Assert.True(depositTest);
+            Assert.Equal(1000, creditAccount.GetBalance());
+
+            bool canWithdrawFunds = creditAccount.WithdrawFunds(2000, _mockDate);
+            Assert.True(canWithdrawFunds);
+        }
     }
 }
