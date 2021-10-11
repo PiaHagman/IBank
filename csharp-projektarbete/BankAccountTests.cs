@@ -130,5 +130,21 @@ namespace csharp_projektarbete
             savingsAccount.WithdrawFunds(500, _mockDate);
             Assert.Equal(498, savingsAccount.GetBalance());
         }
+
+        [Fact]
+        public void InvestmentAccount_Tests()
+        {
+            InvestmentAccount investmentAccount = new InvestmentAccount(new List<Transaction>());
+
+            bool depositTest = investmentAccount.DepositToAccount(3000, _mockDate);
+            Assert.True(depositTest);
+            Assert.Equal(3000, investmentAccount.GetBalance());
+
+            bool canWithdrawFunds = investmentAccount.WithdrawFunds(1000, _mockDate);
+            Assert.True(canWithdrawFunds);
+
+            bool cantWithdrawFunds = investmentAccount.WithdrawFunds(1000, _mockDate);
+            Assert.False(cantWithdrawFunds);
+        }
     }
 }
