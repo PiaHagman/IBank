@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Logic;
 using Xunit;
 
@@ -176,6 +177,25 @@ namespace csharp_projektarbete
 
             bool canWithdrawCreditFunds = creditAccount.WithdrawFunds(19001, _mockDate);
             Assert.False(canWithdrawCreditFunds);
+        }
+
+        [Fact]
+        public void DebitAccount_Tests()
+        {
+            DebitAccount debitAccount = new DebitAccount(new List<Transaction>());
+
+            debitAccount.DepositToAccount(5000, _mockDate);
+
+            while (debitAccount.GetBalance()>0)
+            {
+                debitAccount.WithdrawFunds(100, _mockDate);
+            }
+            Assert.Equal(0, debitAccount.GetBalance());
+
+            //fejkar att det är ny månad
+            _mockDate.SetDateTo(DateTime.Today.AddMonths(1));
+            Assert.True(debitAccount.WithdrawFunds(500, _mockDate));
+
         }
     }
 }
