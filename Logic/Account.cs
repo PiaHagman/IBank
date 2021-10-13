@@ -35,7 +35,7 @@ namespace Logic
         }
 
         
-        public bool DepositToAccount(double deposit, IDate date) //TODO Döp om till DepositCashToAccount samt skapa ny metod TransferFromAccount()
+        public bool DepositCashToAccount(double deposit, IDate date) 
         {
             if (deposit <= 0 || deposit > 15000 || MaxDepositsPerDayAreExceeded (deposit, date))
             {
@@ -61,7 +61,7 @@ namespace Logic
                 return false;
             }
 
-            var newWithdrawel = new Transaction( -withdrawal, date.Today());  //Todo - testa att det blir ett minussaldo som dras från balance
+            var newWithdrawel = new Transaction( -withdrawal, date.Today());  
             _allTransactions.Add(newWithdrawel);
             
             return true;
