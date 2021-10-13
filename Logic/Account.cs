@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Logic
 {
@@ -36,7 +35,7 @@ namespace Logic
         }
 
         
-        public bool DepositToAccount(double deposit, IDate date) //TODO Döp om till DepositCashToAccount samt skapa ny metod TransferFromAccount()
+        public bool DepositCashToAccount(double deposit, IDate date) 
         {
             if (deposit <= 0 || deposit > 15000 || MaxDepositsPerDayAreExceeded (deposit, date))
             {
@@ -49,6 +48,12 @@ namespace Logic
             return true;
         }
 
+        public virtual void TransferFromAccount(double deposit, IDate date)
+        {
+            var newDeposit = new Transaction(deposit, date.Today());
+            _allTransactions.Add(newDeposit);
+        }
+
         public virtual bool WithdrawFunds(double withdrawal, IDate date)
         {
             if ((GetBalance() - withdrawal) < 0)
@@ -56,7 +61,7 @@ namespace Logic
                 return false;
             }
 
-            var newWithdrawel = new Transaction( -withdrawal, date.Today());  //Todo - testa att det blir ett minussaldo som dras från balance
+            var newWithdrawel = new Transaction( -withdrawal, date.Today());  
             _allTransactions.Add(newWithdrawel);
             
             return true;

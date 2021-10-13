@@ -36,17 +36,17 @@ namespace csharp_projektarbete
         public void DepositToAccount_Test()
         {
             double firstDeposit = 300;
-            account.DepositToAccount(firstDeposit, _mockDate);
+            account.DepositCashToAccount(firstDeposit, _mockDate);
 
             Assert.Equal(firstDeposit, account.GetBalance());
 
             double secondDeposit = 500;
-            account.DepositToAccount(secondDeposit, _mockDate);
+            account.DepositCashToAccount(secondDeposit, _mockDate);
 
             Assert.Equal((firstDeposit + secondDeposit), account.GetBalance());
 
             double negativeDeposit = -300;
-            bool canInsertNegativeDeposit = account.DepositToAccount(negativeDeposit, _mockDate);
+            bool canInsertNegativeDeposit = account.DepositCashToAccount(negativeDeposit, _mockDate);
 
             Assert.False(canInsertNegativeDeposit);
         }
@@ -54,7 +54,7 @@ namespace csharp_projektarbete
         [Fact]
         public void WithdrawFunds_Test()
         {
-            account.DepositToAccount(500, _mockDate);
+            account.DepositCashToAccount(500, _mockDate);
             account.WithdrawFunds(400, _mockDate);
 
             double balance = account.GetBalance();
@@ -71,7 +71,7 @@ namespace csharp_projektarbete
 
         public void WithdrawBankChanges_Test()
         {
-            account.DepositToAccount(300, _mockDate);
+            account.DepositCashToAccount(300, _mockDate);
             var bankCharges = 300;
             bool canWithdrawBankCharges = account.WithdrawBankCharges(bankCharges, _mockDate);
 
@@ -87,22 +87,22 @@ namespace csharp_projektarbete
 
         public void MaxDepositPerDayAndTime_Test()
         {
-            bool acceptedDepositUpTo15000 = account.DepositToAccount(15000, _mockDate);
+            bool acceptedDepositUpTo15000 = account.DepositCashToAccount(15000, _mockDate);
             Assert.True(acceptedDepositUpTo15000);
 
-            bool deniedDepositOver15000 = account.DepositToAccount(15001, _mockDate);
+            bool deniedDepositOver15000 = account.DepositCashToAccount(15001, _mockDate);
             Assert.False(deniedDepositOver15000);
 
             Account account1 = new Account(new List<Transaction>());
-            account1.DepositToAccount(8000, _mockDate);
+            account1.DepositCashToAccount(8000, _mockDate);
 
-            bool exceededMaxDepositForADay = account1.DepositToAccount(8000, _mockDate);
+            bool exceededMaxDepositForADay = account1.DepositCashToAccount(8000, _mockDate);
             Assert.False(exceededMaxDepositForADay);
 
             //fejka att det går en dag och att det då går att sätta in 8000 nya.
             _mockDate.SetDateTo(DateTime.Today + TimeSpan.FromDays(1));
 
-            bool maxDepositNowSetToZero = account1.DepositToAccount(8000, _mockDate);
+            bool maxDepositNowSetToZero = account1.DepositCashToAccount(8000, _mockDate);
             Assert.True(maxDepositNowSetToZero);
         }
 
@@ -111,7 +111,7 @@ namespace csharp_projektarbete
         {
             SavingsAccount savingsAccount = new SavingsAccount(new List<Transaction>());
 
-             bool depositTest = savingsAccount.DepositToAccount(3000, _mockDate);
+             bool depositTest = savingsAccount.DepositCashToAccount(3000, _mockDate);
 
              Assert.True(depositTest);
              Assert.Equal(3000, savingsAccount.GetBalance());
@@ -137,7 +137,7 @@ namespace csharp_projektarbete
         {
             InvestmentAccount investmentAccount = new InvestmentAccount(new List<Transaction>());
 
-            bool depositTest = investmentAccount.DepositToAccount(3000, _mockDate);
+            bool depositTest = investmentAccount.DepositCashToAccount(3000, _mockDate);
             Assert.True(depositTest);
             Assert.Equal(3000, investmentAccount.GetBalance());
 
@@ -168,7 +168,7 @@ namespace csharp_projektarbete
         {
             CreditAccount creditAccount = new CreditAccount(new List<Transaction>());
 
-            bool depositTest = creditAccount.DepositToAccount(1000, _mockDate);
+            bool depositTest = creditAccount.DepositCashToAccount(1000, _mockDate);
             Assert.True(depositTest);
             Assert.Equal(1000, creditAccount.GetBalance());
 
@@ -184,7 +184,7 @@ namespace csharp_projektarbete
         {
             DebitAccount debitAccount = new DebitAccount(new List<Transaction>());
 
-            debitAccount.DepositToAccount(5000, _mockDate);
+            debitAccount.DepositCashToAccount(5000, _mockDate);
 
             while (debitAccount.GetBalance()>0)
             {
@@ -192,10 +192,18 @@ namespace csharp_projektarbete
             }
             Assert.Equal(0, debitAccount.GetBalance());
 
-            //fejkar att det är ny månad
-            _mockDate.SetDateTo(DateTime.Today.AddMonths(1));
-            Assert.True(debitAccount.WithdrawFunds(500, _mockDate));
+            //simulerar att insättning av lön sker den 25 okt
+            DateTime dayForSalary = new DateTime(2021, 10, 25, 00,00,00);
+            _mockDate.SetDateTo(new DateTime(2021, 10, 25));
 
+            if (_mockDate.Today() == dayForSalary)
+            {
+                debitAccount.TransferFromAccount(25000, _mockDate);
+            }
+           
+            //Testar att det går att ta ut 500 kronor till
+            Assert.True(debitAccount.WithdrawFunds(500, _mockDate));
+            Assert.Equal(24500, debitAccount.GetBalance());
         }
     }
 }
