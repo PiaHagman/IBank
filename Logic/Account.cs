@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Logic
 {
@@ -47,6 +46,12 @@ namespace Logic
             _allTransactions.Add(newDeposit);
             
             return true;
+        }
+
+        public virtual void TransferFromAccount(double deposit, IDate date)
+        {
+            var newDeposit = new Transaction(deposit, date.Today());
+            _allTransactions.Add(newDeposit);
         }
 
         public virtual bool WithdrawFunds(double withdrawal, IDate date)

@@ -192,10 +192,18 @@ namespace csharp_projektarbete
             }
             Assert.Equal(0, debitAccount.GetBalance());
 
-            //fejkar att det är ny månad
-            _mockDate.SetDateTo(DateTime.Today.AddMonths(1));
-            Assert.True(debitAccount.WithdrawFunds(500, _mockDate));
+            //simulerar att insättning av lön sker den 25 okt
+            DateTime dayForSalary = new DateTime(2021, 10, 25, 00,00,00);
+            _mockDate.SetDateTo(new DateTime(2021, 10, 25));
 
+            if (_mockDate.Today() == dayForSalary)
+            {
+                debitAccount.TransferFromAccount(25000, _mockDate);
+            }
+           
+            //Testar att det går att ta ut 500 kronor till
+            Assert.True(debitAccount.WithdrawFunds(500, _mockDate));
+            Assert.Equal(24500, debitAccount.GetBalance());
         }
     }
 }
