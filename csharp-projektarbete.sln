@@ -3,9 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31613.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "csharp-projektarbete", "csharp-projektarbete\csharp-projektarbete.csproj", "{4994D019-4684-4FD1-9D9F-9E48F21745BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "csharp-projektarbete", "csharp-projektarbete\csharp-projektarbete.csproj", "{4994D019-4684-4FD1-9D9F-9E48F21745BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{35A37A0B-05FD-455B-93AF-BFD671EA368E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "Logic\Logic.csproj", "{35A37A0B-05FD-455B-93AF-BFD671EA368E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B7AC5FF4-D19A-4F7E-9A9B-4EEC5F30B9DD}"
+	ProjectSection(SolutionItems) = preProject
+		Pia_Hagman.md = Pia_Hagman.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM", "ATM\ATM.csproj", "{F8A3D5B0-6C1A-4330-BBC8-EF8C9BE6F11C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +28,10 @@ Global
 		{35A37A0B-05FD-455B-93AF-BFD671EA368E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35A37A0B-05FD-455B-93AF-BFD671EA368E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35A37A0B-05FD-455B-93AF-BFD671EA368E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8A3D5B0-6C1A-4330-BBC8-EF8C9BE6F11C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8A3D5B0-6C1A-4330-BBC8-EF8C9BE6F11C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8A3D5B0-6C1A-4330-BBC8-EF8C9BE6F11C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8A3D5B0-6C1A-4330-BBC8-EF8C9BE6F11C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
