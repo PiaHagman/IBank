@@ -26,7 +26,7 @@ namespace Logic
 
                if (_creditBalance < 0)
                {
-                   return false;
+                   throw new Exception("Exceeded credit balance, your credit is 20 000");
                }
             }
             

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 namespace Logic
@@ -28,7 +30,7 @@ namespace Logic
 
             if (age < 18)
             {
-                return false;
+                throw new Exception("Underaged! You can't create a bank account");
             }
 
             _name = name;
@@ -39,9 +41,17 @@ namespace Logic
         
         public bool DepositCashToAccount(double deposit, IDate date) 
         {
-            if (deposit <= 0 || deposit > MAXIMUM_DEPOSIT || MaxDepositsPerDayAreExceeded (deposit, date)) 
+            if (deposit <= 0)
             {
-                return false;
+                throw new Exception("You can't insert negative deposit");
+               
+            } if (deposit > MAXIMUM_DEPOSIT)
+            {
+                throw new Exception("Denied, deposit limit for a day is 15 000");
+            }
+            if (MaxDepositsPerDayAreExceeded(deposit, date))
+            {
+                throw new Exception("Denied, amount of deposits per day is exceeded");
             }
 
             var newDeposit = new Transaction(deposit, date.Today());  
@@ -60,7 +70,7 @@ namespace Logic
         {
             if ((GetBalance() - withdrawal) < 0)
             {
-                return false;
+                throw new Exception("You exceeded your balance");
             }
 
             var newWithdrawel = new Transaction( -withdrawal, date.Today());  

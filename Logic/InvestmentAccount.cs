@@ -20,14 +20,14 @@ namespace Logic
 
             if ((GetBalance() - withdrawal) < 0)
             {
-                return false;
+                throw new Exception("You exceeded your balance");
             }
 
             foreach (var transaction in _investmentAccountTransactions)
             {
                 if (totalWithdrawalsPerYear>=1 && transaction.Date.Year == date.Today().Year && transaction.Amount < 0)
                 {
-                    return false;
+                    throw new Exception("You already exceeded your amounts of withdrawal this year");
                 }
 
                 if (transaction.Date.Year != date.Today().Year)

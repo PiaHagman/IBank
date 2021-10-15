@@ -64,8 +64,7 @@ namespace csharp_projektarbete
             double balance = account.GetBalance();
             Assert.Equal(100, balance);
 
-            bool canExceedBalance = account.WithdrawFunds(1000, _mockDate);
-        
+           
             var exception = Assert.Throws<Exception>(() => account.WithdrawFunds(1000, _mockDate));
             Assert.Equal("You exceeded your balance", exception.Message);
 
@@ -104,7 +103,7 @@ namespace csharp_projektarbete
             account1.DepositCashToAccount(8000, _mockDate);
 
             var exception2 = Assert.Throws<Exception>(() => account1.DepositCashToAccount(8000, _mockDate));
-            Assert.Equal("Denied, amount of deposits per day is exceeded", exception.Message);
+            Assert.Equal("Denied, amount of deposits per day is exceeded", exception2.Message);
 
             //fejka att det går en dag och att det då går att sätta in 8000 nya.
             _mockDate.SetDateTo(DateTime.Today + TimeSpan.FromDays(1));
@@ -152,14 +151,14 @@ namespace csharp_projektarbete
             Assert.True(canWithdrawFunds);
 
             var exception = Assert.Throws<Exception>(() => investmentAccount.WithdrawFunds(1000, _mockDate));
-            Assert.Equal("Tou already exceeded your amounts of withdrawal this year", exception.Message);
+            Assert.Equal("You already exceeded your amounts of withdrawal this year", exception.Message);
 
             _mockDate.SetDateTo(DateTime.Today.AddYears(1));
             investmentAccount.WithdrawFunds(500, _mockDate);
             Assert.Equal(1500, investmentAccount.GetBalance());
 
             var exception2 = Assert.Throws<Exception>(() => investmentAccount.WithdrawFunds(100, _mockDate));
-            Assert.Equal("Tou already exceeded your amounts of withdrawal this year", exception.Message);
+            Assert.Equal("You already exceeded your amounts of withdrawal this year", exception.Message);
         }
 
         [Fact]

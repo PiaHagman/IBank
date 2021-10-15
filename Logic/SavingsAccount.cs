@@ -21,7 +21,7 @@ namespace Logic
 
             if ((GetBalance() - withdrawal) < 0)
             {
-                return false;
+                throw new Exception("You exceeded your balance");
             }
 
             foreach (var transaction in _savingsAccountTransactions)
