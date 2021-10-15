@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31613.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "csharp-projektarbete", "csharp-projektarbete\csharp-projektarbete.csproj", "{4994D019-4684-4FD1-9D9F-9E48F21745BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "csharp-projektarbete", "csharp-projektarbete\csharp-projektarbete.csproj", "{4994D019-4684-4FD1-9D9F-9E48F21745BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{35A37A0B-05FD-455B-93AF-BFD671EA368E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "Logic\Logic.csproj", "{35A37A0B-05FD-455B-93AF-BFD671EA368E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3205E4BF-591D-421C-933D-99E1FF8E9EC4}"
+	ProjectSection(SolutionItems) = preProject
+		PiaHagman.md = PiaHagman.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
