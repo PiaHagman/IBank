@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "csharp-projektarbete", "csh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "Logic\Logic.csproj", "{35A37A0B-05FD-455B-93AF-BFD671EA368E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3205E4BF-591D-421C-933D-99E1FF8E9EC4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D06A5EAC-1F1D-44DD-B5A1-AB79F62F3E0B}"
 	ProjectSection(SolutionItems) = preProject
-		PiaHagman.md = PiaHagman.md
+		SofiiaLöf.md = SofiiaLöf.md
 	EndProjectSection
 EndProject
 Global
