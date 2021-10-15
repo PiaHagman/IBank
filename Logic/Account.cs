@@ -9,6 +9,8 @@ namespace Logic
         private string _name;
         private int _accountNumber;
         private readonly List<Transaction> _allTransactions;
+        private const int MAXIMUM_DEPOSIT = 15000;
+        
 
         public Account(List<Transaction> allTransactions)
         {
@@ -19,7 +21,7 @@ namespace Logic
                                                      //Vi behöver då kalla på metoden DepositToAccount() så att insättningen verkligen görs.
                                                         
         {
-            int MinNumber = 1000000; 
+            int MinNumber = 1000000; //TODO gör till constanta
             int MaxNumber = 9999999;
 
             var rand = new Random();
@@ -37,7 +39,7 @@ namespace Logic
         
         public bool DepositCashToAccount(double deposit, IDate date) 
         {
-            if (deposit <= 0 || deposit > 15000 || MaxDepositsPerDayAreExceeded (deposit, date))
+            if (deposit <= 0 || deposit > MAXIMUM_DEPOSIT || MaxDepositsPerDayAreExceeded (deposit, date)) 
             {
                 return false;
             }
@@ -77,7 +79,7 @@ namespace Logic
 
         public bool MaxDepositsPerDayAreExceeded(double deposit, IDate date)
         {
-            double maxDepositsPerDay = 15000;
+            double maxDepositsPerDay = 15000; //TODO gör till constant
             double totalDepositsToday= 0; 
 
             foreach (var transaction in _allTransactions)

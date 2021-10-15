@@ -9,6 +9,7 @@ namespace Logic
     public class SavingsAccount : Account
     {
         private readonly List<Transaction> _savingsAccountTransactions;
+        private const int ALLOWED_WITHDRAWALS_PER_YEAR = 5;
         public SavingsAccount(List<Transaction> allTransactions) : base(allTransactions)
         {
             _savingsAccountTransactions = allTransactions;
@@ -25,7 +26,7 @@ namespace Logic
 
             foreach (var transaction in _savingsAccountTransactions)
             {
-                if (totalWithdrawalsPerYear >=5 && transaction.Date.Year == date.Today().Year && transaction.Amount<0)
+                if (totalWithdrawalsPerYear >= ALLOWED_WITHDRAWALS_PER_YEAR && transaction.Date.Year == date.Today().Year && transaction.Amount<0)
                 {
                     WithdrawBankCharges(bankCharges, date);
 
