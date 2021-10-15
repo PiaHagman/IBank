@@ -22,15 +22,12 @@ namespace csharp_projektarbete
         public void CreateNewAccount_Test()
         {
             bool couldCreateNewAccount = account.NewAccount("Kalle", 18);
-            //bool couldNotCreateNewAccount= account.NewAccount("Pelle", 16);
-
             Assert.True(couldCreateNewAccount);
 
             var exception = Assert.Throws<Exception>(() => account.NewAccount("Pelle", 16));
             Assert.Equal("Underaged! You can't create a bank account", exception.Message);
 
             int accountNumber = account.GetBankAccountNumber();
-
             Assert.True(accountNumber > 1000000 && accountNumber < 9999999);
         }
 
@@ -48,7 +45,7 @@ namespace csharp_projektarbete
             Assert.Equal((firstDeposit + secondDeposit), account.GetBalance());
 
             double negativeDeposit = -300;
-           
+
             var exception = Assert.Throws<Exception>(() => account.DepositCashToAccount(negativeDeposit, _mockDate));
             Assert.Equal("You can't insert negative deposit", exception.Message);
         
@@ -64,9 +61,8 @@ namespace csharp_projektarbete
             double balance = account.GetBalance();
             Assert.Equal(100, balance);
 
-           
             var exception = Assert.Throws<Exception>(() => account.WithdrawFunds(1000, _mockDate));
-            Assert.Equal("You exceeded your balance", exception.Message);
+            Assert.Equal("Not enough funds on your balance, please try different amount", exception.Message);
 
             bool balanceCanBeZero = account.WithdrawFunds(withdrawal: 100, _mockDate);
             Assert.True(balanceCanBeZero);
@@ -95,15 +91,14 @@ namespace csharp_projektarbete
             bool acceptedDepositUpTo15000 = account.DepositCashToAccount(15000, _mockDate);
             Assert.True(acceptedDepositUpTo15000);
 
-         
             var exception = Assert.Throws<Exception>(() => account.DepositCashToAccount(15001, _mockDate));
             Assert.Equal("Denied, deposit limit for a day is 15 000", exception.Message);
 
             Account account1 = new Account(new List<Transaction>());
             account1.DepositCashToAccount(8000, _mockDate);
 
-            var exception2 = Assert.Throws<Exception>(() => account1.DepositCashToAccount(8000, _mockDate));
-            Assert.Equal("Denied, amount of deposits per day is exceeded", exception2.Message);
+            exception = Assert.Throws<Exception>(() => account1.DepositCashToAccount(8000, _mockDate));
+            Assert.Equal("Denied, amount of deposits per day is exceeded", exception.Message);
 
             //fejka att det går en dag och att det då går att sätta in 8000 nya.
             _mockDate.SetDateTo(DateTime.Today + TimeSpan.FromDays(1));
@@ -151,14 +146,14 @@ namespace csharp_projektarbete
             Assert.True(canWithdrawFunds);
 
             var exception = Assert.Throws<Exception>(() => investmentAccount.WithdrawFunds(1000, _mockDate));
-            Assert.Equal("You already exceeded your amounts of withdrawal this year", exception.Message);
+            Assert.Equal("You already exceeded your amount of withdrawals this year", exception.Message);
 
             _mockDate.SetDateTo(DateTime.Today.AddYears(1));
             investmentAccount.WithdrawFunds(500, _mockDate);
             Assert.Equal(1500, investmentAccount.GetBalance());
 
-            var exception2 = Assert.Throws<Exception>(() => investmentAccount.WithdrawFunds(100, _mockDate));
-            Assert.Equal("You already exceeded your amounts of withdrawal this year", exception.Message);
+            exception = Assert.Throws<Exception>(() => investmentAccount.WithdrawFunds(100, _mockDate));
+            Assert.Equal("You already exceeded your amount of withdrawals this year", exception.Message);
         }
 
         [Fact]

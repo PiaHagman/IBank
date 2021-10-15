@@ -70,7 +70,7 @@ namespace Logic
         {
             if ((GetBalance() - withdrawal) < 0)
             {
-                throw new Exception("You exceeded your balance");
+                throw new Exception("Not enough funds on your balance, please try different amount");
             }
 
             var newWithdrawel = new Transaction( -withdrawal, date.Today());  
