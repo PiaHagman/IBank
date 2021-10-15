@@ -1,5 +1,5 @@
 # Rapport
-### Hur gick planeringen
+## Planering
 Vi påbörjade planeringen tidigt (4/10) för att ha mer tid för diskussion och analys kring
 vad ska testas i våran program och hur kan vi designa det. Vi blev överens om att först ska vi göra 
 de issues som ingår i projektet och sedan gör de som vi önskar att implementera och som är passande till våran lösning.
@@ -17,7 +17,7 @@ I vårat projekt så vore det bra att göra en issue-mall innan så alla våran issue
 utformad i samma stil. Eftersom vi tog reda på att det går att göra en mall efter vi har redan planerat alla vår issues,
   utformade vi några enligt mallen och resten behållit i den ursprungliga stilen.
 
-### Hur gick implementeringen? Motivera lösningar/beslut
+## Implementering 
 Eftersom vi redan i planeringsfasen diskuterade vad vi vill testa och vilken lösning är passande så gick implementeringen
 utan några större problem. Vi arbetade enligt TDD där testfall skrivs först och därefter skrivs själva koden. Som nämndes tidigare delade vi 
 upp några issues för att båda skulle ha möjlighet att göra varsin och några andra issues löste vi tillsammans.
@@ -39,7 +39,7 @@ Vi har också implementerad en `IBank` interface som ser till att alla metoder sk
 med bankkonto att göra. I våran lösning är det bara `Account` klassen som ärver från denna intreface. Vi båda har hållit med att det känns överflödig
 för våran nuvarande lösningen, men vi har beslutat att behålla den i fall det ska göras en vidare utveckling av projektet. 
 
-### Vad kan göras bättre?
+### Vad kan göras bättre
 - Vi ska ha mer koll på att göra issue-branch varje gång vi ska lösa en issue. Vi råkade glömma att göra detta en gång 
 som resulterade att alla ändringar pushades direkt till master. 
 
@@ -52,7 +52,7 @@ där om kreditet har använts ska användare vara påmind om att använd krediten bor
 
 - Vi diskuterade att det också kan vara bra om programmet sparar alla transaktioner t.ex. till en fil för att sedan hämta en kontohistorik och ha möjlighet till att söka specifika transaktioner, insättningar ellet uttag.
 
-### Vad blev du mest nöjd med och varför?
+### Egen reflektion
 Mest nöjd blev jag med vårat samarbete. Vi redan i början kunde bestämma tydlig vad vi vill göra och hur vi vill göra detta. Arbetet har 
 alltid gått frammåt och varje beslut var väl genomtänkt och diskuterat. Båda tog ansvaret för projektet och detta har lett till att processen har gått smidigt.
 Jag har fått möjlighet att diskutera fritt mina ideer och förslag och jag har alltid varit trevligt bemött av Pia. 
